@@ -97,7 +97,7 @@ app.get('/test', function (req, res) {
 });
 
 app.get('/mongodbdata', function (req, res) {
-  fs.readdir('/mongodbdata', function(err, items) {
+  fs.readdir('/var/lib/mongodb/data', function(err, items) {
     if (err) {
       res.send(err);
     } else {
