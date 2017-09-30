@@ -1,8 +1,9 @@
 //  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
-    morgan  = require('morgan');
-    
+    morgan  = require('morgan'),
+    fs  = require('fs');
+
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -91,8 +92,27 @@ app.get('/pagecount', function (req, res) {
 
 app.get('/test', function (req, res) {
   var a = (typeof process.env.DATABASE_SERVICE_NAME != 'undefined')?process.env.DATABASE_SERVICE_NAME:'no process env';
+  var b = '/mongodbdata';
   res.send(a);
 });
+
+app.get('/mongodbdata', function (req, res) {
+  fs.readdir('/mongodbdata', function(err, items) {
+    if (err) {
+      res.send(err);
+    } else {
+      console.log(items);
+      var a = 'here comes the list:';
+      for (var i=0; i<items.length; i++) {
+        a += ' '+items[i];
+      }
+      res.send(a);
+    }
+  });
+
+});
+
+
 
 // error handling
 app.use(function(err, req, res, next){
