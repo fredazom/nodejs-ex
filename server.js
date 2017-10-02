@@ -92,23 +92,24 @@ app.get('/pagecount', function (req, res) {
 
 app.get('/test', function (req, res) {
   var a = (typeof process.env.MONGODB_ADMIN_PASSWORD != 'undefined')?process.env.MONGODB_ADMIN_PASSWORD:'no process env';
-  var b = '/mongodbdata';
   res.send(a);
 });
 
-app.get('/mongodbdata', function (req, res) {
-  fs.readdir('/var/lib/mongodb/data', function(err, items) {
-    if (err) {
-      res.send(err);
-    } else {
-      console.log(items);
-      var a = 'here comes the list:';
-      for (var i=0; i<items.length; i++) {
-        a += ' '+items[i];
-      }
-      res.send(a);
-    }
-  });
+app.get('/mongodbservice', function (req, res) {
+  var a = (typeof process.env.mongodb_TCP_SERVICE_HOST != 'undefined')?process.env.MONGODB_ADMIN_PASSWORD:'no service mongodb-tcp';
+  res.send(a);
+  // fs.readdir('/var/lib/mongodb/data', function(err, items) {
+  //   if (err) {
+  //     res.send(err);
+  //   } else {
+  //     console.log(items);
+  //     var a = 'here comes the list:';
+  //     for (var i=0; i<items.length; i++) {
+  //       a += ' '+items[i];
+  //     }
+  //     res.send(a);
+  //   }
+  // });
 
 });
 
