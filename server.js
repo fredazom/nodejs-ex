@@ -91,7 +91,7 @@ app.get('/pagecount', function (req, res) {
 });
 
 app.get('/test', function (req, res) {
-  var a = (typeof process.env.MONGODB_ADMIN_PASSWORD != 'undefined')?process.env.MONGODB_ADMIN_PASSWORD:'no process env';
+  var a = (typeof process.env.DATABASE_SERVICE_NAME != 'undefined')?process.env.DATABASE_SERVICE_NAME:'no process env';
   res.send(a);
 });
 
