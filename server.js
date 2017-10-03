@@ -96,7 +96,7 @@ app.get('/test', function (req, res) {
 });
 
 app.get('/mongodbservice', function (req, res) {
-  var a = (typeof process.env.mongodb-tcp_SERVICE_HOST != 'undefined')?process.env.mongodb-tcp_SERVICE_HOST:'no service mongodb-tcp';
+  var a = (typeof process.env.MONGODB_TCP_SERVICE_HOST != 'undefined')?process.env.MONGODB_TCP_SERVICE_HOST:'no service mongodb-tcp';
   res.send(a);
   // fs.readdir('/var/lib/mongodb/data', function(err, items) {
   //   if (err) {
